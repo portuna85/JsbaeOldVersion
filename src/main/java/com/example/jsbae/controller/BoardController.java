@@ -92,8 +92,6 @@ public class BoardController {
         Post post = postRepository.postInfo(id);
         post.setReplyList(replyRepository.replyListByPostId(id));
 
-        String s = new Gson().toJson(post);
-
         return post;
     }
 
