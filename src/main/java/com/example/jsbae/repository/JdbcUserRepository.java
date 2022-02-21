@@ -20,7 +20,7 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public User findDetail(Long id) {
-        return jdbcTemplate.queryForObject("SELECT idx, email, name, created FROM tbl_user u WHERE idx = ?",
+        return jdbcTemplate.queryForObject("SELECT idx, email, name, updated, created FROM tbl_user u WHERE idx = ?",
                 BeanPropertyRowMapper.newInstance(User.class), id);
     }
 

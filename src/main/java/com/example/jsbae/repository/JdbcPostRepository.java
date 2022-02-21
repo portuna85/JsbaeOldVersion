@@ -21,7 +21,7 @@ public class JdbcPostRepository implements PostRepository {
 
     @Override
     public List<Post> postList() {
-        return jdbcTemplate.query("SELECT idx, title, created FROM tbl_post", BeanPropertyRowMapper.newInstance(Post.class));
+        return jdbcTemplate.query("SELECT * FROM tbl_post", BeanPropertyRowMapper.newInstance(Post.class));
     }
 
     @Override

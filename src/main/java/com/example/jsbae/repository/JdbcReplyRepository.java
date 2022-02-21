@@ -43,7 +43,6 @@ public class JdbcReplyRepository implements ReplyRepository {
 
     @Override
     public int deleteReply(Long id) {
-
         return jdbcTemplate.update("DELETE FROM tbl_reply WHERE idx = ?", id);
     }
 }

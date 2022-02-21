@@ -28,8 +28,7 @@ public class JdbcBoardRepository implements BoardRepository {
 
     @Override
     public Board boardInfo(Long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM tbl_board WHERE idx = ?",
-                BeanPropertyRowMapper.newInstance(Board.class), id);
+        return jdbcTemplate.queryForObject("SELECT * FROM tbl_board WHERE idx = ?", BeanPropertyRowMapper.newInstance(Board.class), id);
     }
 
     @Override

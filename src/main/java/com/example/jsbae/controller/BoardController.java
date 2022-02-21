@@ -91,6 +91,9 @@ public class BoardController {
     public Post getPostDetail(@PathVariable("id") long id) {
         Post post = postRepository.postInfo(id);
         post.setReplyList(replyRepository.replyListByPostId(id));
+
+        String s = new Gson().toJson(post);
+
         return post;
     }
 
@@ -142,7 +145,6 @@ public class BoardController {
     @PutMapping("/reply/{id}")
     public ResponseEntity<String> updateReply(@PathVariable("id") long id, @RequestBody Reply reply) {
         Reply r1 = replyRepository.replySearch(id);
-
         if (r1 != null) {
             r1.setIdx(r1.getIdx());
             r1.setDescription(reply.getDescription());
@@ -156,8 +158,7 @@ public class BoardController {
     @DeleteMapping("/user/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") long id) {
         try {
-            int result = userRepository.userDelete(id);
-            if (result == 0) {
+            if (userRepository.userDelete(id) == 0) {
                 return new ResponseEntity<>("삭제 안되영" + id, HttpStatus.OK);
             }
             return new ResponseEntity<>("삭제 완료", HttpStatus.OK);
@@ -181,7 +182,9 @@ public class BoardController {
 
     @DeleteMapping("/post/{id}")
     public ResponseEntity<String> deletePost(@PathVariable("id") long id) {
+
         postRepository.postDelete(id);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
